@@ -23,7 +23,7 @@ let index = 0;
 let numScore = 0;
 
 //* For Timer
-let seconds = 5;
+let seconds = 30;
 let timerInterval;
 
 //* For Displaying the Emoji on the Screen
@@ -31,6 +31,7 @@ function displayEmoji() {
   const currentEmoji = emojiJSON[index];
   description.textContent = currentEmoji.emoji;
   timer.textContent = `Time : ${seconds}s`;
+  inputForm.focus();
 }
 
 //* Check User Guess is Correct or Not
@@ -45,6 +46,11 @@ function checkGuess(guessValue) {
   } else {
     result.textContent = "Wrong !";
   }
+
+  setTimeout(() => {
+    result.textContent = "";
+  }, 1000);
+
   index++;
   if (index == emojiJSON.length) {
     index = 0;
