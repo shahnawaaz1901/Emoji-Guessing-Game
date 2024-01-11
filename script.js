@@ -16,15 +16,21 @@ const description = document.getElementById("description");
 const inputForm = document.getElementById("guess-input");
 const score = document.getElementById("score");
 const result = document.getElementById("result");
+const timer = document.getElementById("timer");
 
 //* For Traverse on emojiJSON array
 let index = 0;
 let numScore = 0;
 
+//* For Timer
+let seconds = 5;
+let timerInterval;
+
 //* For Displaying the Emoji on the Screen
 function displayEmoji() {
   const currentEmoji = emojiJSON[index];
   description.textContent = currentEmoji.emoji;
+  timer.textContent = `Time : ${seconds}s`;
 }
 
 //* Check User Guess is Correct or Not
@@ -58,4 +64,25 @@ inputForm.addEventListener("keydown", (event) => {
 //* Call the Display Emoji function when page is loaded
 document.addEventListener("DOMContentLoaded", () => {
   displayEmoji();
+  startTimer();
 });
+
+//* For Timer
+function startTimer() {
+  timerInterval = setInterval(() => {
+    if (seconds <= 0) {
+      endGame();
+      return;
+    }
+    seconds--;
+    timer.textContent = `Time : ${seconds}s`;
+  }, 1000);
+}
+
+function endGame() {
+  clearInterval(timerInterval);
+  //   inputForm.setAttribute("disabled", true);
+  inputForm.disabled = true;
+  inputForm.value = "";
+  timer.textContent = "";
+}
