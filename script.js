@@ -23,24 +23,30 @@ function displayEmoji() {
   description.textContent = currentEmoji.emoji;
 }
 
+//* Check User Guess is Correct or Not
+function checkGuess(guessValue) {
+  const currentEmojiDescription = emojiJSON[index].description
+    .trim()
+    .toLowerCase();
+  if (guessValue == currentEmojiDescription) {
+    numScore++;
+    result.textContent = "Correct !";
+    score.textContent = `Score : ${numScore}`;
+  } else {
+    result.textContent = "Wrong !";
+  }
+  index++;
+  if (index == emojiJSON.length) {
+    index = 0;
+  }
+}
+
+//* Event Listener on Input Guess Form
 inputForm.addEventListener("keydown", (event) => {
   if (event.key == "Enter") {
     const inputValue = inputForm.value.trim().toLowerCase();
+    checkGuess(inputValue);
     inputForm.value = "";
-    const currentEmojiDescription = emojiJSON[index].description
-      .trim()
-      .toLowerCase();
-    if (inputValue == currentEmojiDescription) {
-      numScore++;
-      result.textContent = "Correct !";
-      score.textContent = `Score : ${numScore}`;
-    } else {
-      result.textContent = "Wrong !";
-    }
-    index++;
-    if (index == emojiJSON.length) {
-      index = 0;
-    }
     displayEmoji();
   }
 });
