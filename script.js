@@ -5,6 +5,10 @@ const emojiJSON = [
   { description: "Smiling Face with Tear", emoji: "🥲" },
   { description: "Smiling Face with Hearts", emoji: "🥰" },
   { description: "Grinning Face", emoji: "😀" },
+  { description: "Smiling Face with Halo", emoji: "😇" },
+  { description: "Winking Face", emoji: "😉" },
+  { description: "Face with Tears of Joy", emoji: "😂" },
+  { description: "Grinning Face with Sweat", emoji: "😅" },
 ];
 
 //* Fetch the HTML using DOM API
